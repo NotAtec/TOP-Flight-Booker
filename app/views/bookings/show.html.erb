@@ -1,0 +1,48 @@
+<section class="hero is-fullheight">
+  <div class="hero-body">
+    <div class="container has-text-centered">
+      <div class="column is-half is-offset-one-quarter">
+        <h1 class="title">
+          Trip Summary
+        </h1>
+        <h2 class="subtitle">
+          <%= @booking.date %>
+        </h2>
+        <table class="table is-fullwidth">
+          <thead>
+            <th>Departure</th>
+            <th>Arrival</th>
+          </thead>
+          <tbody>
+            <tr>
+              <td><%= @booking.flight.adep.name %> <%= @booking.flight.eobt %></td>
+              <td><%= @booking.flight.ades.name %> <%= (@booking.flight.eobt.to_time + 2.hours).strftime('%H:%M')%></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h1 class="title">Passenger Manifest</h1>
+        <table class="table is-fullwidth has-text-left">
+          <thead>
+            <tr>
+              <th>Passenger Name</th>
+              <th>Passenger Email</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @booking.passengers.each do |pax| %>
+              <tr>
+                <td>
+                  <p><%= pax.name %></p>
+                </td>
+                <td><p><%= pax.email %></p></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+
+        <%= link_to 'Return to Booking', root_path, class: "button" %>
+      </div>
+    </div>
+  </div>
+</section>
