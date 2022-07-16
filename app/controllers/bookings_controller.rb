@@ -11,6 +11,14 @@ class BookingsController < ApplicationController
   end
 
   def create
+    @booking = Booking.new(booking_params)
+    if @booking.save
+      flash[:notice] = 'Booking completed!'
+      redirect_to booking_path(@booking)
+    else
+      flash[:alert] = 'Booking Failed, an error occured.'
+      render 'new'
+    end
   end
 
   private
@@ -19,4 +27,7 @@ class BookingsController < ApplicationController
     @booking = Booking.find(params[:id])
   end
 
+  def booking_params
+    params.require(:booking).permit(:flight_id, :date, passengers_attributes: [:name, :email])
+  end
 end
