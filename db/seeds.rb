@@ -11,9 +11,9 @@ puts "Seeding DB..."
 Airport.delete_all
 Flight.delete_all
 
-Airport.create(name: 'AMS')
-Airport.create(name: 'CDG')
-Airport.create(name: 'LHR')
+Airport.create(name: 'AMS', id: 1)
+Airport.create(name: 'CDG', id: 2)
+Airport.create(name: 'LHR', id: 3)
 
 # AMS-CDG
 Flight.create(date: Date.parse('2022-07-04'), adep_id: 1, ades_id: 2, eobt: '07:00')
