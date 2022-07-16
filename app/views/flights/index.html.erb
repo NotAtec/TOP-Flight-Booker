@@ -3,8 +3,10 @@
     <div class="container has-text-centered">
       <div class="columns is-variable">
         <div class="column is-half has-text-left">
-          <h1 class="title">Private Flights</h1>
-          <h2 class="subtitle">Booking flights has never been easier!</h2>
+          <%= link_to root_path do %>
+            <h1 class="title">Private Flights</h1>
+            <h2 class="subtitle">Booking flights has never been easier!</h2>
+          <% end %>
         </div>
         <div class="column is-half">
           <%= simple_form_for :search, url: root_path, method: "GET" do |f| %>
