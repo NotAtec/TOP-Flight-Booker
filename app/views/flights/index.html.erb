@@ -1,14 +1,27 @@
-<p style="color: green"><%= notice %></p>
-
-<h1>Flights</h1>
-
-<div id="flights">
-  <% @flights.each do |flight| %>
-    <%= render flight %>
-    <p>
-      <%= link_to "Show this flight", flight %>
-    </p>
-  <% end %>
-</div>
-
-<%= link_to "New flight", new_flight_path %>
+<section class="hero is-fullheight">
+  <div class="hero-body">
+    <div class="container has-text-centered">
+      <div class="columns is-variable">
+        <div class="column is-half has-text-left">
+          <h1 class="title">Private Flights</h1>
+          <h2 class="subtitle">Booking flights has never been easier!</h2>
+        </div>
+        <div class="column is-half">
+          <%= simple_form_for :search, url: root_path, method: "GET" do |f| %>
+            <div class="select"><%= f.input :adep, collection: @departures, wrapper: false, label: false %></div>
+            <div class="select"><%= f.input :ades, collection: @arrivals, wrapper: false, label: false %></div>
+            <div class="select"><%= f.input :pax, collection: 1..4, wrapper: false, label: false %></div>
+            <%= f.input :date, as: :date, html5: true, wrapper: false, label: false %>
+            
+            <%= f.submit "Search", class: "button" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer>
+      <div class="content has-text-centered">
+        <p>A simple flight booking program. Made by <a href="https://github.com/NotAtec">Jeroen Brinkhorst</a></p>
+      </div>
+    </footer>
+</section>
