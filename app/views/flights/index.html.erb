@@ -26,7 +26,7 @@
           <% else %>
             <div class="columns is-vcentered is-centered">
               <div class="column">
-                <%= form_with url: "/", method: :get do |form| %>
+                <%= form_with url: "bookings/new", method: :get do |form| %>
                   <% @selected.each do |f| %>
                     <% arrival_time = (f.eobt.to_time + 3600 + 3600).strftime('%H:%M')%>
                     <div class="columns is-vcentered is-centered">
