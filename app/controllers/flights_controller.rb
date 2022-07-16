@@ -16,6 +16,7 @@ class FlightsController < ApplicationController
 
     return unless params.key?(:search)
     @pax = params[:search][:pax]
+    @date = params[:search][:date]
     @selected = @flights.where(adep: params[:search][:adep], ades: params[:search][:ades], date: Date.parse(params[:search][:date]).strftime('%a')).to_a
   end
 

@@ -1,0 +1,23 @@
+<section class="hero is-fullheight">
+  <div class="hero-body">
+    <div class="container has-text-centered">
+      <div class="columns is-variable">
+        <div class="column is-half has-text-left">
+          <h1 class="title">Trip Summary:</h1>
+          <h2 class="subtitle"><%= @date %> | <%= @flight.adep.name %> - <%= @flight.ades.name %> | <%= @flight.eobt %> - <%= @arr %></h2>
+        </div>
+        <div class="column is-half">
+          <% @pax.to_i.times do |n| %>
+            <b>Passenger <%= n + 1%></b>
+            <br>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer>
+      <div class="content has-text-centered">
+        <p>A simple flight booking program. Made by <a href="https://github.com/NotAtec">Jeroen Brinkhorst</a></p>
+      </div>
+    </footer>
+</section>
