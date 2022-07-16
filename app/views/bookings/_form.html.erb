@@ -1,0 +1,42 @@
+<%= simple_form_for @booking do |f| %>
+  <% i = 1 %>
+  <%= f.simple_fields_for :passengers do |pf|%> 
+      <div class="field is-horizontal">
+        <div class="field-label is-normal">
+          <%= pf.label "Passenger #{i}", class: "label" %>
+        </div>
+        <div class="field-body">
+          <div class="field">
+            <p class="control is-expanded">
+              <%= pf.input :name,
+                            label: false,
+                            placeholder: "Passenger Name",
+                            required: true,
+                            wrapper: false,
+                            input_html: { class: "input"}%>
+            </p>
+          </div>
+          <div class="field">
+            <p class="control is-expanded">
+              <%= pf.input :email,
+                            label: false,
+                            wrapper: false,
+                            required: true,
+                            placeholder: "name@example.com",
+                            input_html: { class: "input"} %>
+            </p>
+          </div>
+        </div>
+      </div>
+      <% i += 1%>
+    <% end %>
+
+  <%= f.hidden_field :date, value: params[:date]%>
+  <%= f.hidden_field :flight_id, value: params[:flight_id]%>
+
+  <div class="field is-grouped is-grouped-right">
+    <div class="control">
+      <%= f.button :submit, 'Purchase Ticket', class: "button" %>
+    </div>
+  </div>
+<% end %>

@@ -2,10 +2,9 @@ class BookingsController < ApplicationController
   before_action :set_booking, only: %i[ show ]
 
   def new
-    @pax = params[:pax]
-    @date = params[:date]
-    @flight = Flight.where(id: params[:flight]).take
-    @arr = (@flight.eobt.to_time + 3600 + 3600).strftime('%H:%M')
+    @flight = Flight.find(params[:flight_id])
+    @booking = Booking.new()
+    params[:pax].to_i.times { @booking.passengers.build }
   end
 
   def show

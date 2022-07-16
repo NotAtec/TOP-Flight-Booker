@@ -26,12 +26,12 @@
           <% else %>
             <div class="columns is-vcentered is-centered">
               <div class="column">
-                <%= form_with url: "bookings/new", method: :get do |form| %>
+                <%= form_with url: new_booking_path, method: :get do |form| %>
                   <% @selected.each do |f| %>
                     <% arrival_time = (f.eobt.to_time + 3600 + 3600).strftime('%H:%M')%>
                     <div class="columns is-vcentered is-centered">
                       <div class="column is-narrow has-text-centered">
-                        <%= form.radio_button :flight, f.id %>
+                        <%= form.radio_button :flight_id, f.id %>
                       </div>
                       <div class="column is-three-fifths">
                         <div class="box">

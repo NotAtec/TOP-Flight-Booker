@@ -1,16 +1,19 @@
+<% adep = @flight.adep.name %>
+<% ades = @flight.ades.name%>
+<% date = params[:date] %>
+<% eoff = @flight.eobt %>
+<% eon = (@flight.eobt.to_time + 2.hours).strftime('%H:%M') %>
+
 <section class="hero is-fullheight">
   <div class="hero-body">
     <div class="container has-text-centered">
       <div class="columns is-variable">
         <div class="column is-half has-text-left">
           <h1 class="title">Trip Summary:</h1>
-          <h2 class="subtitle"><%= @date %> | <%= @flight.adep.name %> - <%= @flight.ades.name %> | <%= @flight.eobt %> - <%= @arr %></h2>
+          <h2 class="subtitle"><%= date %> | <%= adep %> - <%= ades %> | <%= eoff %> - <%= eon %></h2>
         </div>
         <div class="column is-half">
-          <% @pax.to_i.times do |n| %>
-            <b>Passenger <%= n + 1%></b>
-            <br>
-          <% end %>
+          <%= render "form" %>
         </div>
       </div>
     </div>
