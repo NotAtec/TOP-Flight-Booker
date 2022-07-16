@@ -59,3 +59,5 @@ Flight.create(date: Date.parse('2022-07-08'), adep_id: 2, ades_id: 1, eobt: '13:
 Flight.create(date: Date.parse('2022-07-04'), adep_id: 1, ades_id: 2, eobt: '13:00')
 Flight.create(date: Date.parse('2022-07-06'), adep_id: 1, ades_id: 2, eobt: '19:00')
 Flight.create(date: Date.parse('2022-07-08'), adep_id: 1, ades_id: 2, eobt: '16:00')
+
+puts 'Finished seeding'
