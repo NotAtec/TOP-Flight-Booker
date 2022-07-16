@@ -3,7 +3,7 @@ A simple minimalist webpage, designed to give a simple functional site for booki
 
 No account needed, simple, easy to use. 
 
-[Live Preview]() <-- 
+[Live Preview](https://vast-beach-41987.herokuapp.com/) <-- 
 
 ## Features
 - Simple main page, with UI for selecting all required information
