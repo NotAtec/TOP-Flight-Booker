@@ -1,24 +1,15 @@
-# README
+# Flight Booking
+A simple minimalist webpage, designed to give a simple functional site for booking one way flights.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+No account needed, simple, easy to use. 
 
-Things you may want to cover:
+[Live Preview]() <-- 
 
-* Ruby version
+## Features
+- Simple main page, with UI for selecting all required information
+- Selection of flights in case of multiple flights per day
+- Forms with nested attributes, for an optimal user experience.
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Built With
+- HTML, CSS (Bulma)
+- Rails 7.0
