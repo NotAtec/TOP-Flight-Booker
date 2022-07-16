@@ -8,15 +8,54 @@
         </div>
         <div class="column is-half">
           <%= simple_form_for :search, url: root_path, method: "GET" do |f| %>
-            <div class="select"><%= f.input :adep, collection: @departures, wrapper: false, label: false %></div>
-            <div class="select"><%= f.input :ades, collection: @arrivals, wrapper: false, label: false %></div>
-            <div class="select"><%= f.input :pax, collection: 1..4, wrapper: false, label: false %></div>
+            <div class="select"><%= f.input :adep, collection: @departures, selected: 1, wrapper: false, label: false %></div>
+            <div class="select"><%= f.input :ades, collection: @arrivals, selected: 2, wrapper: false, label: false %></div>
+            <div class="select"><%= f.input :pax, collection: 1..4, selected: 1, wrapper: false, label: false %></div>
             <%= f.input :date, as: :date, html5: true, wrapper: false, label: false %>
             
             <%= f.submit "Search", class: "button" %>
           <% end %>
         </div>
       </div>
+      <% if !@selected.nil? %>
+        <div class="section">
+          <% if @selected.empty? %>
+            <p>There are no flights available on this date.</p>
+          <% else %>
+            <div class="columns is-vcentered is-centered">
+              <div class="column">
+                <%= form_with url: "/", method: :get do |form| %>
+                  <% @selected.each do |f| %>
+                    <% arrival_time = (f.eobt.to_time + 3600 + 3600).strftime('%H:%M')%>
+                    <div class="columns is-vcentered is-centered">
+                      <div class="column is-narrow has-text-centered">
+                        <%= form.radio_button :flight, f.id %>
+                      </div>
+                      <div class="column is-three-fifths">
+                        <div class="box">
+                          <div class="columns">
+                            <div class="column has-text-centered">
+                              <%= f.adep.name %> <br> <%= f.eobt %>
+                            </div>
+                            <div class="column has-text-centered">
+                              Non Stop Flight <br> 2 Hours
+                            </div>
+                            <div class="column has-text-centered">
+                              <%= f.ades.name%> <br> <%= arrival_time %>
+                            </div>
+                            </div>
+                        </div>
+                      </div>
+                    </div>  
+                  <% end %> 
+                  <%= form.hidden_field :pax, value: @pax %>
+                  <%= form.submit "Select Flight", class: "button" %>
+                <% end %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
     </div>
   </div>
   <footer>

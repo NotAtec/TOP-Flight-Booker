@@ -4,69 +4,24 @@ class FlightsController < ApplicationController
   # GET /flights or /flights.json
   def index
     @flights = Flight.all
-    @departures = @flights.map { |f| f.adep.name }.uniq
-    @arrivals = @flights.map { |f| f.ades.name }.uniq
-  end
+    @airports = @flights.map(&:adep).uniq
+    @departures = []
+    @arrivals = []
 
-  # GET /flights/1 or /flights/1.json
-  def show
-  end
-
-  # GET /flights/new
-  def new
-    @flight = Flight.new
-  end
-
-  # GET /flights/1/edit
-  def edit
-  end
-
-  # POST /flights or /flights.json
-  def create
-    @flight = Flight.new(flight_params)
-
-    respond_to do |format|
-      if @flight.save
-        format.html { redirect_to flight_url(@flight), notice: "Flight was successfully created." }
-        format.json { render :show, status: :created, location: @flight }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @flight.errors, status: :unprocessable_entity }
-      end
+    @airports.each do |a|
+      arr = [a.name, a.id]
+      @departures << arr
+      @arrivals << arr
     end
-  end
 
-  # PATCH/PUT /flights/1 or /flights/1.json
-  def update
-    respond_to do |format|
-      if @flight.update(flight_params)
-        format.html { redirect_to flight_url(@flight), notice: "Flight was successfully updated." }
-        format.json { render :show, status: :ok, location: @flight }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @flight.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /flights/1 or /flights/1.json
-  def destroy
-    @flight.destroy
-
-    respond_to do |format|
-      format.html { redirect_to flights_url, notice: "Flight was successfully destroyed." }
-      format.json { head :no_content }
-    end
+    return unless params.key?(:search)
+    @pax = params[:search][:pax]
+    @selected = @flights.where(adep: params[:search][:adep], ades: params[:search][:ades], date: Date.parse(params[:search][:date]).strftime('%a')).to_a
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_flight
-      @flight = Flight.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def flight_params
-      params.require(:flight).permit(:date, :eobt)
-    end
+  def search_params
+    params.require(:search).permit(:adep, :ades, :pax, :date)
+  end
 end
