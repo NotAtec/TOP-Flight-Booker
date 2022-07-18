@@ -9,7 +9,7 @@ No account needed, simple, easy to use.
 - Simple main page, with UI for selecting all required information
 - Selection of flights in case of multiple flights per day
 - Forms with nested attributes, for an optimal user experience.
-- Confirmation emails sent with ActionMailer
+- Confirmation emails sent with ActionMailer (Only in development environment, not implemented on live preview)
 
 ## Built With
 - HTML, CSS (Bulma)
