@@ -1,0 +1,11 @@
+<h1>You have been added as a passenger to a flight booking!</h1>
+<hr>
+<p><%= @passenger.name %>, your flight to <%= @adep %> has been booked.</p>
+<br>
+Your flight details: <br>
+Departure: <%= @adep %> <br>
+Arrival: <%= @ades %> <br>
+Time of Departure: <%= @eobt %> <br>
+Time of Arrival: <%= @eta %> <br>
+<br>
+<%= link_to "View your booking here", booking_url(@booking.id) %>

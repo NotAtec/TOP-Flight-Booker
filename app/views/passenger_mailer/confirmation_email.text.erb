@@ -1,0 +1,12 @@
+<%= @passenger.name %>, your flight to <%= @adep %> has been booked.
+==========================================================================================
+
+You have been added as passenger to a booking.
+Your flight details:
+
+Departure: <%= @adep %>
+Arrival: <%= @ades %>
+Time of Departure: <%= @eobt %>
+Time of Arrival: <%= @eta %>
+
+Link to your booking: <%= booking_url(@booking.id) %>
